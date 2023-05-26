@@ -1,5 +1,6 @@
 class BookmarksController < ApplicationController
   before_action :set_list, only: %i[new create]
+
   def new
     @bookmark = Bookmark.new
   end
@@ -10,7 +11,7 @@ class BookmarksController < ApplicationController
     if @bookmark.save
       redirect_to list_path(@bookmark.list)
     else
-      render :new, status: :unprocessable_entity
+      render :new, status: :conflict
     end
   end
 

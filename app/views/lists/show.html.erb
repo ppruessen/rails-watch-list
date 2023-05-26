@@ -1,7 +1,69 @@
-<h1><%= @list.name %></h1>
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="<%= root_path %>">
+      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" />
+</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-<h3>Here should come the list of movies</h3>
-<% @list.bookmarks.each do |bookmark| %>
-<p> <%= bookmark.comment %></p>
-<% end %>
-<%= link_to "Add new movie to list", new_list_bookmark_path(params[:id]) %>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="<%= root_path %>">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= new_list_bookmark_path(params[:id]) %>">Add new movie</a>
+          </li>
+          <li class="nav-item dropdown">
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" data-turbo-method="delete" href="#">Log out</a>
+            </div>
+          </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+<div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/breakfast.jpg)">
+  <h1><%= @list.name %></h1>
+</div>
+
+<section class="wrapper">
+    <div class="container-fostrap">
+        <div class="content">
+            <div class="container">
+                <div class="row">
+                  <% @list.bookmarks.each do |bookmark| %>
+                    <div class="col-xs-12 col-sm-4">
+                        <div class="card">
+                            <a class="img-card" href="#">
+                            <img src=<%= bookmark.movie.poster_url%> />
+                          </a>
+                            <div class="card-content">
+                                <span class="badge"><%= bookmark.comment %></span>
+                                <h4 class="card-title">
+                                    <%= link_to bookmark.movie.title, '#' %>
+                                  </a>
+                                </h4>
+                                <p class="overview">
+                                    <%= bookmark.movie.overview %>
+                                </p>
+                            </div>
+                            <div class="card-read-more">
+                                <a href="" class="btn btn-link btn-block">
+                                    Read More
+                                </a>
+                            </div>
+                        </div>
+                      </div>
+                    <% end %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
